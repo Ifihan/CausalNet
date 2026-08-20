@@ -167,6 +167,9 @@ def main(config):
 
     for n_subName in subName:
         print('Subject:', n_subName)
+        if os.path.exists(os.path.join('ourmodel_threedatasets_weights', str(n_subName) + '.pth')):
+            print(f'[skip] {n_subName}: weight already exists, resuming')
+            continue
         y_train = []
         y_test = []
         four_parts_train = []
