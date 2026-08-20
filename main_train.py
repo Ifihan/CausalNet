@@ -251,7 +251,7 @@ def main(config):
 
                 four_parts_test.append([lr_eye_lips, lr_eye_lips1,lr_eye_lips2,lr_eye_lips3])
 
-        # weight_path = 'I:\ourmodel_threedatasets_weights' + '/' + n_subName + '.pth'
+        weight_path = os.path.join('ourmodel_threedatasets_weights', str(n_subName) + '.pth')
 
 
         model = CausalNet(
@@ -350,9 +350,9 @@ def main(config):
                 best_each_subject_pred = temp_best_each_subject_pred
                 best_matrix=matrix
                 best_epoch=epoch
-                # Save Weights
-                # if (config.train):
-                #     torch.save(model.state_dict(), weight_path)
+                # Save Weights (best checkpoint per subject)
+                if (config.train):
+                    torch.save(model.state_dict(), weight_path)
             if val_acc>=1:
                 if not os.path.exists(os.path.join('.', 'results')):
                     os.makedirs(os.path.join('.', 'results'))
